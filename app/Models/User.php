@@ -25,8 +25,21 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'name' => 'string',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'role' => 'string',
+            'created_at' => 'timestamp',
+            'updated_at' => 'timestamp',    
         ];
+    }
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
+    }
+
+    public function responses()
+    {
+        return $this->hasMany(Response::class, 'admin_id');
     }
 }

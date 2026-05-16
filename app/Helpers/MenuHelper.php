@@ -10,11 +10,19 @@ class MenuHelper
             [
                 'icon' => 'dashboard',
                 'name' => 'Dashboard',
-                'subItems' => [
-                    ['name' => 'Ecommerce', 'path' => '/'],
-                ],
+                'path' => '/',
+            ],
+             [
+                'icon' => 'tables',
+                'name' => 'Tabel User',
+                'path' => '/tabel_user',
             ],
             [
+                'icon' => 'tables',
+                'name' => 'Tabel Admin',
+                'path' => '/tabel_admin',
+            ],
+                 [
                 'icon' => 'calendar',
                 'name' => 'Calendar',
                 'path' => '/calendar',
