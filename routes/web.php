@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\ProfileController;
@@ -101,8 +102,13 @@ Route::get('/videos', function () {
 })->name('videos');
 
 //tampil data 
-Route::get('/tabel_user', [DashboardController::class, 'index'])->name('tabel_user');
+Route::get('/tabel_user', [ComplaintController::class, 'index'])->name('tabel_user');
 
+// tambah pengaduan
+Route::get('tambah_pengaduan-user',[ComplaintController::class, 'form'])->name('tambah_pengaduan-user.form');
+
+// simpan pengaduan
+Route::post('tambah_pengaduan-user',[ComplaintController::class, 'store'])->name('tambah_pengaduan-user.store');
 });
 
 require __DIR__.'/auth.php';

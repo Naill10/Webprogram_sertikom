@@ -37,11 +37,11 @@
     if (this.theme === 'dark') {
         html.classList.add('dark');
         body.classList.add('dark', 'bg-gray-900');
-        body.classList.remove('bg-green-50'); // hapus hijau saat dark
+        body.classList.remove('bg-green-100'); 
     } else {
         html.classList.remove('dark');
         body.classList.remove('dark', 'bg-gray-900');
-        body.classList.add('bg-green-50'); // hijau muda saat light
+        body.classList.add('bg-gray-100'); 
     }
 }
             });
@@ -89,7 +89,7 @@
 } else {
     document.documentElement.classList.remove('dark');
     document.body.classList.remove('dark', 'bg-gray-900');
-    document.body.classList.add('bg-emerald-50'); // tambah ini
+    document.body.classList.add('bg-emerald-100'); 
 }
         })();
     </script>

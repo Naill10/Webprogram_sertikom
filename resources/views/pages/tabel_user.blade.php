@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-common.component-card title="Tabel Pengaduan"
+    <x-common.component-table-user title="Tabel Pengaduan"
     desc="Daftar semua pengaduan masyarakat">
       
             <div x-data="{
@@ -115,6 +115,11 @@
                         </th>
                         <th class="px-5 py-3 text-left sm:px-6">
                             <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">
+                                Foto Pengaduan
+                            </p>
+                        </th>
+                        <th class="px-5 py-3 text-left sm:px-6">
+                            <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">
                                 Judul Pengaduan
                             </p>
                         </th>
@@ -149,37 +154,53 @@
     @foreach ($tabel_user as $com)
         <tr class="border-b border-gray-100 dark:border-gray-800">
             
-            {{-- Kolom Pelapor --}}
+            
             <td class="px-5 py-4 sm:px-6">
                 <div class="flex items-center gap-3">
                     <div class="w-5 h-5 overflow-hidden rounded-full bg-gray-200 flex items-center justify-center">
-                     {{ $com->id }}
+                     {{ $loop->iteration }}
                     </div>
                   
                 </div>
-            </td>
+        </td>
 
-            {{-- Kolom Judul --}}
+        <td class="px-5 py-4 sm:px-6">
+    @if($com->photo)
+        <img 
+            src="{{ asset('storage/' . $com->photo) }}" 
+            alt="foto"
+            onclick="zoomFoto(this.src)"
+            class="w-10 h-10 rounded-full object-cover cursor-pointer hover:opacity-80 transition">
+    @else
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+            <span class="text-gray-500 text-xs font-bold">
+                {{ strtoupper(substr($com->title, 0, 1)) }}
+            </span>
+        </div>
+    @endif
+</td>
+   
             <td class="px-5 py-4 sm:px-6">
-                <p class="font-medium text-gray-800 text-theme-sm dark:text-white/90">{{ $com->title }}</p>
-                <p class="text-gray-500 text-theme-xs dark:text-gray-400">{{ Str::limit($com->description, 40) }}</p>
+                <p class="text-gray-700 font-bold text-theme-sm dark:text-white/90">{{ $com->title }}</p>
+                <p class="text-gray-500 text-theme-xs dark:text-gray-400">{{ Str::limit($com->description, 10) }}</p>
             </td>
 
-            {{-- Kolom Pelapor --}}
+
               <td class="px-5 py-4 sm:px-6">
-                <p class="text-gray-500 text-theme-sm text-bold dark:text-white/90">{{ $com->user->name ?? '-' }}</p>
+                <p class="text-gray-700 font-bold text-theme-sm dark:text-white/90">{{ $com->user->name ?? '-' }}</p>
                 <p class="text-gray-400 text-theme-xs dark:text-gray-500">{{ $com->user->email ?? '-' }}</p>
             </td>
-            {{-- Kolom Lokasi --}}
+            
+
             <td class="px-5 py-4 sm:px-6">
                 <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ $com->location }}</p>
             </td>
-                {{-- Kolom Tanggal Pengaduan --}}
+           
             <td class="px-5 py-4 sm:px-6">
                 <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ $com->created_at->format('d M Y') }}</p>
             </td>
 
-            {{-- Kolom Status --}}
+  
             <td class="px-5 py-4 sm:px-6">
                 @php
                     $statusClass = match($com->status) {
@@ -193,7 +214,7 @@
                 </span>
             </td>
 
-            {{-- Kolom Aksi --}}
+
             <td class="px-5 py-4 sm:px-6">
                 <div class="flex items-center gap-2">
                     <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded-md">Respon</a>
@@ -209,4 +230,20 @@
     </div>
 </div>
         </x-common.component-card>
+        {{-- Modal Zoom Foto --}}
+<div id="modalFoto" onclick="tutupModal()" 
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+    <img id="modalGambar" src="" alt="zoom" class="max-w-lg max-h-[100vh] rounded-xl shadow-2xl">
+</div>
+
+<script>
+    function zoomFoto(src) {
+        document.getElementById('modalGambar').src = src;
+        document.getElementById('modalFoto').classList.remove('hidden');
+        document.getElementById('modalFoto').classList.add('flex');}
+    function tutupModal() {
+        document.getElementById('modalFoto').classList.add('hidden');
+        document.getElementById('modalFoto').classList.remove('flex');
+    }
+</script>
 @endsection
