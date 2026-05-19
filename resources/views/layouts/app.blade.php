@@ -31,17 +31,19 @@
                     localStorage.setItem('theme', this.theme);
                     this.updateTheme();
                 },
-                updateTheme() {
-                    const html = document.documentElement;
-                    const body = document.body;
-                    if (this.theme === 'dark') {
-                        html.classList.add('dark');
-                        body.classList.add('dark', 'bg-gray-900');
-                    } else {
-                        html.classList.remove('dark');
-                        body.classList.remove('dark', 'bg-gray-900');
-                    }
-                }
+               updateTheme() {
+    const html = document.documentElement;
+    const body = document.body;
+    if (this.theme === 'dark') {
+        html.classList.add('dark');
+        body.classList.add('dark', 'bg-gray-900');
+        body.classList.remove('bg-green-50'); // hapus hijau saat dark
+    } else {
+        html.classList.remove('dark');
+        body.classList.remove('dark', 'bg-gray-900');
+        body.classList.add('bg-green-50'); // hijau muda saat light
+    }
+}
             });
 
             Alpine.store('sidebar', {
@@ -81,13 +83,14 @@
             const savedTheme = localStorage.getItem('theme');
             const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             const theme = savedTheme || systemTheme;
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-                document.body.classList.add('dark', 'bg-gray-900');
-            } else {
-                document.documentElement.classList.remove('dark');
-                document.body.classList.remove('dark', 'bg-gray-900');
-            }
+          if (theme === 'dark') {
+    document.documentElement.classList.add('dark');
+    document.body.classList.add('dark', 'bg-gray-900');
+} else {
+    document.documentElement.classList.remove('dark');
+    document.body.classList.remove('dark', 'bg-gray-900');
+    document.body.classList.add('bg-emerald-50'); // tambah ini
+}
         })();
     </script>
     

@@ -1,7 +1,8 @@
 <?php
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Tampil_dataController;
 use App\Http\Controllers\PenyewaanController;
 
@@ -98,6 +99,9 @@ Route::get('/image', function () {
 Route::get('/videos', function () {
     return view('pages.ui-elements.videos', ['title' => 'Videos']);
 })->name('videos');
+
+//tampil data 
+Route::get('/tabel_user', [DashboardController::class, 'index'])->name('tabel_user');
 
 });
 
