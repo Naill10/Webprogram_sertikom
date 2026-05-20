@@ -7,29 +7,24 @@ use Illuminate\Http\Request;
 class ComplaintController extends Controller
 {
    public function index() {
-        $tabel_user = Complaint::with('user')->get();
-        return view('pages.tabel_user', compact('tabel_user'));
+        $tabel_user = Complaint::with('user')
+        ->where('user_id', auth()->id())
+        ->get();
+        return view('user.tabel_user', compact('tabel_user'));
     }
 
     public function form() {
-       return view('pages.tambah_pengaduan-user');
+       return view('user.create');
     }
 
-    public function store(Request $request) {
-    $photoPath = null;
-    if ($request->hasFile('photo')) {
-        $photoPath = $request->file('photo')->store('photos', 'public');
+   
+
+public function destroy($id) {
+    $complaint = Complaint::findOrFail($id);
+    if ($complaint->user_id !== auth()->id()) {
+        return redirect()->route('tabel_user')->with('error', 'Anda tidak memiliki izin untuk menghapus pengaduan ini.');
     }
-
-    Complaint::create([
-        'user_id'     => auth()->id(),
-        'title'       => $request->title,
-        'description' => $request->description,
-        'location'    => $request->location,
-        'photo'       => $photoPath,
-        'status'      => 'pending',
-    ]);
-
-    return redirect()->route('tabel_user')->with('success', 'Pengaduan berhasil ditambahkan!');
+    $complaint->delete();
+    return redirect()->route('tabel_user')->with('success', 'Pengaduan berhasil dihapus!');
 }
 }

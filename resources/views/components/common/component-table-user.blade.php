@@ -26,7 +26,7 @@
                     </p>
                 @endif
             </div>
-         <form action="{{ route('tambah_pengaduan-user.form') }}" >
+         <form action="{{ route('create.form') }}" >
               <button @click="nextPage" :disabled="currentPage === totalPages" :class="currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''" class="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-3 
                text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 sm:px-3.5">
                     <span class="hidden sm:inline">Tambah Pengaduan</span>

@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Tampil_dataController;
 use App\Http\Controllers\PenyewaanController;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -15,6 +17,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('pages.dashboard.ecommerce', ['title' => 'E-commerce Dashboard']);
 })->name('dashboard');
+
+//dashboard admin
+Route::get('/ecommerce-admin', function () {
+    return view('pages.dashboard.ecommerce-admin', ['title' => 'E-commerce Admin Dashboard']);
+})->name('ecommerce-admin');
+
 
 // calender pages
 Route::get('/calendar', function () {
@@ -104,11 +112,29 @@ Route::get('/videos', function () {
 //tampil data 
 Route::get('/tabel_user', [ComplaintController::class, 'index'])->name('tabel_user');
 
+//tampil data (admin)
+Route::get('/tabel_admin', [DashboardController::class, 'show'])->name('tabel_admin');
 // tambah pengaduan
-Route::get('tambah_pengaduan-user',[ComplaintController::class, 'form'])->name('tambah_pengaduan-user.form');
+Route::get('create',[ComplaintController::class, 'form'])->name('create.form');
 
 // simpan pengaduan
-Route::post('tambah_pengaduan-user',[ComplaintController::class, 'store'])->name('tambah_pengaduan-user.store');
+Route::post('create',[DashboardController::class, 'store'])->name('create.store');
+
+
+//delete data
+Route::delete('/tabel_user/{id}', [ComplaintController::class, 'destroy'])->name('tabel_user.destroy');
+
+//tampil data crud admin
+Route::get('/crud-admin', [AdminController::class, 'index'])->name('crud-admin');
+
+Route::get('/crud-admin/create', [AdminController::class, 'create'])->name('create.admin');
+// simpan data crud admin
+Route::post('/crud-admin', [AdminController::class, 'store'])->name('store.admin');
+
+Route::get('/edit_pengaduan/{id}', [DashboardController::class, 'edit'])->name('edit_pengaduan');
+Route::put('/edit_pengaduan/{id}', [DashboardController::class, 'update'])->name('update_pengaduan');
+
+
 });
 
 require __DIR__.'/auth.php';

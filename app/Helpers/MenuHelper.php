@@ -1,11 +1,48 @@
 <?php
 
 namespace App\Helpers;
-
+use Illuminate\Support\Facades\Auth;
 class MenuHelper
 {
     public static function getMainNavItems()
-    {
+    { 
+         $role = Auth::User()->role; 
+            if ($role == 'admin') {
+                return [
+                   [
+                'icon' => 'dashboard',
+                'name' => 'Dashboard',
+                'path' => '/ecommerce-admin',
+            ],
+               
+                [
+                    'icon' => 'tables',
+                    'name' => 'Tabel Admin',
+                    'path' => '/tabel_admin',
+                ],
+                [
+                    'icon' => 'tables',
+                    'name' => 'Crud Admin',
+                    'path' => '/crud-admin',
+                ]
+          
+          
+                ];
+            }
+            else {
+                return [
+                    [
+                        'icon' => 'dashboard',
+                        'name' => 'Dashboard',
+                        'path' => '/',
+                    ],
+                    [
+                        'icon' => 'tables',
+                        'name' => 'Tabel User',
+                        'path' => '/tabel_user',
+                    ],
+                ];
+    };
         return [
             [
                 'icon' => 'dashboard',

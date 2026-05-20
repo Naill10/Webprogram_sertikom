@@ -5,7 +5,7 @@
 
 <x-common.component-card title="Default Inputs">
     <!-- title -->
-     <form action="{{ route('tambah_pengaduan-user.store') }}" method="POST" enctype="multipart/form-data">
+     <form action="{{ route('create.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
     
     <div>
