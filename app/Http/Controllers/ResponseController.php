@@ -21,7 +21,7 @@ class ResponseController extends Controller
         ]);
 
         Complaint::where('id', $complaint_id)->update(['status' => $request->status]);
-        return redirect()->back()->with('success', 'Respon berhasil ditambahkan!');
+        return redirect()->route('tabel_admin', $complaint_id)->with('success', 'Respon berhasil ditambahkan!');
     }
 
     public function destroy($id)
@@ -35,5 +35,11 @@ class ResponseController extends Controller
     {
         $complaint = Complaint::with('responses.admin')->findOrFail($id);
         return view('admin.response_admin', compact('complaint'));
+    }
+
+    public function respon()
+    {
+        $responses   = Response::with(['complaint.user', 'admin'])->latest()->get();
+        return view('admin.respon-tabel', compact('responses'));
     }
 }

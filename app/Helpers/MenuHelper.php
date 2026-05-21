@@ -24,6 +24,11 @@ class MenuHelper
                     'icon' => 'tables',
                     'name' => ' Admin',
                     'path' => '/crud-admin',
+                ],
+                [
+                    'icon' => 'tables',
+                    'name' => 'Respon',
+                    'path' => '/respon',
                 ]
           
           

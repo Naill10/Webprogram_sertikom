@@ -245,4 +245,19 @@
         });
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonColor: '#3b82f6',
+                confirmButtonText: 'OK',
+            });
+        });
+    </script>
+@endif
 @endsection 

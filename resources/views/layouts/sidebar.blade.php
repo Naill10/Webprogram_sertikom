@@ -73,7 +73,7 @@
                 alt="Logo Bogor" width="44" height="44" />
 
       
-            <img class="hiddendark:block flex-shrink-0"
+            <img class="hidden dark:block flex-shrink-0"
                 src="/images/logo/bogor.png"
                 alt="Logo Bogor" width="44" height="44" />
 
@@ -85,7 +85,7 @@
 
    
         <img x-show="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen"
-            src="/images/logo/logo-icon.svg"
+            src="/images/logo/bogor.png"
             alt="Logo" width="32" height="32" />
 
     </a>
