@@ -21,7 +21,7 @@ class ResponseController extends Controller
         ]);
 
         Complaint::where('id', $complaint_id)->update(['status' => $request->status]);
-        return redirect()->route('tabel_admin', $complaint_id)->with('success', 'Respon berhasil ditambahkan!');
+        return redirect()->route('complaint.respon', $complaint_id)->with('success', 'Respon berhasil ditambahkan!');
     }
 
     public function destroy($id)

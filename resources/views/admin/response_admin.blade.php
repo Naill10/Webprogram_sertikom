@@ -95,11 +95,11 @@
                 <p class="text-sm text-gray-700 dark:text-gray-300">{{ $res->response }}</p>
 
       
-                <form action="{{ route('response.destroy', $res->id) }}" method="POST" class="mt-2"
-                    onsubmit="return confirm('Hapus respon ini?')">
+                <form action="{{ route('response.destroy', $res->id) }}" method="POST"  id="delete-response-{{ $res->id }}" class="mt-2"
+                   >
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-xs text-red-500 hover:text-red-700">Hapus</button>
+                    <button onclick="confirmHapusRespon({{ $res->id }})" type="button" class="text-xs text-red-500 hover:text-red-700">Hapus</button>
                 </form>
             </div>
         @empty
@@ -119,6 +119,25 @@
             });
         </script>
     @endif
+
+    <script>
+    function confirmHapusRespon(id) {
+        Swal.fire({
+            title: 'Hapus Respon?',
+            text: 'Respon ini akan dihapus permanen!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-response-' + id).submit();
+            }
+        });
+    }
+</script>
 
 </x-common.component-default>
 
