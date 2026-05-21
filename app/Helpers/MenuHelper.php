@@ -12,17 +12,17 @@ class MenuHelper
                    [
                 'icon' => 'dashboard',
                 'name' => 'Dashboard',
-                'path' => '/ecommerce-admin',
+                'path' => '/',
             ],
                
                 [
                     'icon' => 'tables',
-                    'name' => 'Tabel Admin',
+                    'name' => 'Pengaduan (Masyarakat)',
                     'path' => '/tabel_admin',
                 ],
                 [
                     'icon' => 'tables',
-                    'name' => 'Crud Admin',
+                    'name' => ' Admin',
                     'path' => '/crud-admin',
                 ]
           
@@ -38,7 +38,7 @@ class MenuHelper
                     ],
                     [
                         'icon' => 'tables',
-                        'name' => 'Tabel User',
+                        'name' => 'Pengaduan (Masyarakat)',
                         'path' => '/tabel_user',
                     ],
                 ];

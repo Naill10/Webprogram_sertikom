@@ -60,18 +60,23 @@
   --color-brand-900: #064526;
   --color-brand-950: #032716;
 
-  --color-blue-light-25: #f5fbff;
-  --color-blue-light-50: #f0f9ff;
-  --color-blue-light-100: #e0f2fe;
-  --color-blue-light-200: #b9e6fe;
-  --color-blue-light-300: #7cd4fd;
-  --color-blue-light-400: #36bffa;
-  --color-blue-light-500: #0ba5ec;
-  --color-blue-light-600: #0086c9;
-  --color-blue-light-700: #026aa2;
-  --color-blue-light-800: #065986;
-  --color-blue-light-900: #0b4a6f;
-  --color-blue-light-950: #062c41;
+  --color-blue-light-25: #f6fef9;
+  --color-blue-light-50: #f0fdf4;
+  --color-blue-light-100: #dcfce7;
+  --color-blue-light-200: #bbf7d0;
+  --color-blue-light-300: 
+#86efac;
+  --color-blue-light-400: 
+#4ade80;  
+  --color-blue-light-500: #22c55e;
+  --color-blue-light-600: #16a34a;
+  --color-blue-light-700:
+#15803d;
+  --color-blue-light-800: 
+#166534;
+  --color-blue-light-900: #14532d;
+  --color-blue-light-950: 
+#052e16;
 
   --color-gray-25: #fcfcfd;
   --color-gray-50: #f9fafb;

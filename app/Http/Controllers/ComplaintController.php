@@ -27,4 +27,6 @@ public function destroy($id) {
     $complaint->delete();
     return redirect()->route('tabel_user')->with('success', 'Pengaduan berhasil dihapus!');
 }
+
+
 }

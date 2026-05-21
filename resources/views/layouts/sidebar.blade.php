@@ -60,20 +60,36 @@
     @mouseleave="$store.sidebar.setHovered(false)">
     <!-- Logo Section -->
     <div class="pt-8 pb-7 flex"
-        :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
-        'xl:justify-center' :
-        'justify-start'">
-        <a href="/">
-            <img x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                class="dark:hidden" src="/images/logo/logo.svg" alt="Logo" width="150" height="40" />
-            <img x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
-                class="hidden dark:block" src="/images/logo/logo-dark.svg" alt="Logo" width="150"
-                height="40" />
-            <img x-show="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen"
-                src="/images/logo/logo-icon.svg" alt="Logo" width="32" height="32" />
+    :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ?
+    'xl:justify-center' :
+    'justify-start'">
+    <a href="/" class="flex items-center gap-3">
 
-        </a>
-    </div>
+        <div x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
+            class="flex items-center gap-3">
+
+            <img class="dark:hidden flex-shrink-0"
+                src="/images/logo/bogor.png"
+                alt="Logo Bogor" width="44" height="44" />
+
+      
+            <img class="hiddendark:block flex-shrink-0"
+                src="/images/logo/bogor.png"
+                alt="Logo Bogor" width="44" height="44" />
+
+            <div class="flex flex-col leading-tight">
+                <span class="text-sm font-bold text-gray-800 dark:text-white">Kota Bogor</span>
+                <span class="text-xs text-green-500 dark:text-gray-400">Website Pengaduan Masyarakat</span>
+            </div>
+        </div>
+
+   
+        <img x-show="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen"
+            src="/images/logo/logo-icon.svg"
+            alt="Logo" width="32" height="32" />
+
+    </a>
+</div>
 
     <!-- Navigation Menu -->
     <div class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">

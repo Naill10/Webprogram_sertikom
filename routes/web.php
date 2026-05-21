@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Tampil_dataController;
 use App\Http\Controllers\PenyewaanController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -14,15 +15,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // dashboard pages
+
 Route::get('/', function () {
     return view('pages.dashboard.ecommerce', ['title' => 'E-commerce Dashboard']);
 })->name('dashboard');
-
-//dashboard admin
-Route::get('/ecommerce-admin', function () {
-    return view('pages.dashboard.ecommerce-admin', ['title' => 'E-commerce Admin Dashboard']);
-})->name('ecommerce-admin');
-
 
 // calender pages
 Route::get('/calendar', function () {
@@ -124,6 +120,9 @@ Route::post('create',[DashboardController::class, 'store'])->name('create.store'
 //delete data
 Route::delete('/tabel_user/{id}', [ComplaintController::class, 'destroy'])->name('tabel_user.destroy');
 
+//delete data admin
+Route::delete('/tabel_admin/{id}', [AdminController::class, 'destroy'])->name('tabel_admin.destroy');
+
 //tampil data crud admin
 Route::get('/crud-admin', [AdminController::class, 'index'])->name('crud-admin');
 
@@ -134,7 +133,13 @@ Route::post('/crud-admin', [AdminController::class, 'store'])->name('store.admin
 Route::get('/edit_pengaduan/{id}', [DashboardController::class, 'edit'])->name('edit_pengaduan');
 Route::put('/edit_pengaduan/{id}', [DashboardController::class, 'update'])->name('update_pengaduan');
 
+Route::get('/edit_admin/{id}', [AdminController::class, 'edit'])->name('edit_admin');
+Route::put('/edit_admin/{id}', [AdminController::class, 'update'])->name('update_admin');
 
+//response
+Route::post('/complaints/{complaint_id}/response', [ResponseController::class, 'store'])->name('response.store');
+Route::delete('/response/{id}', [ResponseController::class, 'destroy'])->name('response.destroy');
+Route::get('/complaints/{id}', [ResponseController::class, 'show'])->name('complaint.show');
 });
 
 require __DIR__.'/auth.php';

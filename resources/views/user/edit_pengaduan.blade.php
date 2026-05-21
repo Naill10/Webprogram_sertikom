@@ -34,15 +34,20 @@
                 class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white">
         </div>
 
-        <div class="mb-4">
-            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Status</label>
-            <select name="status"
-                class="h-11 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white">
-                <option value="pending" {{ old('status', $tabel_user->status) == 'pending' ? 'selected' : '' }}>Pending</option>
-                <option value="in_progress" {{ old('status', $tabel_user->status) == 'in_progress' ? 'selected' : '' }}>In Progress</option>
-                <option value="resolved" {{ old('status', $tabel_user->status) == 'resolved' ? 'selected' : '' }}>Resolved</option>
-            </select>
-        </div>
+     <div class="mb-4">
+    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Status</label>
+    
+
+    <select disabled
+        class="h-11 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white">
+        <option value="pending"     {{ $tabel_user->status === 'pending'     ? 'selected' : '' }}>Pending</option>
+        <option value="in_progress" {{ $tabel_user->status === 'in_progress' ? 'selected' : '' }}>In Progress</option>
+        <option value="resolved"    {{ $tabel_user->status === 'resolved'    ? 'selected' : '' }}>Resolved</option>
+    </select>
+
+    {{-- Hidden input supaya nilai status tetap terkirim ke controller --}}
+    <input type="hidden" name="status" value="{{ $tabel_user->status }}">
+</div>
 
         <button type="submit"
             class="mt-4 inline-flex items-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700">

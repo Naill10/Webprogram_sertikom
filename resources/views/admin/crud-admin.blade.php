@@ -175,8 +175,17 @@
 
             <td class="px-5 py-4 sm:px-6">
                 <div class="flex items-center gap-2">
-                    <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded-md">Edit</a>
-                    <a href="#" class="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1.5 rounded-md">Delete</a>
+                    <a href="{{ route('edit_admin', $com->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded-md">Edit</a>
+                     <form action="{{ route('tabel_admin.destroy', $com->id) }}" method="POST"
+    id="delete-form-{{ $com->id }}">
+    @csrf
+    @method('DELETE')
+    <button type="button"
+   onclick="confirmDelete({{ $com->id }}, {{ $com->id === auth()->id() ? 'true' : 'false' }})"
+        class="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1.5 rounded-md">
+        Delete
+    </button>
+</form>
                 </div>
             </td>
 
@@ -202,6 +211,38 @@
     function tutupModal() {
         document.getElementById('modalFoto').classList.add('hidden');
         document.getElementById('modalFoto').classList.remove('flex');
+    }
+</script>
+
+
+
+<script>
+    function confirmDelete(id, isSelf) {
+        if (isSelf) {
+            Swal.fire({
+                title: 'Tidak Bisa!',
+                text: 'Anda tidak dapat menghapus akun Anda sendiri.',
+                icon: 'error',
+                confirmButtonColor: '#6b7280',
+                confirmButtonText: 'OK',
+            });
+            return; // stop, tidak submit form
+        }
+
+        Swal.fire({
+            title: 'Hapus Admin?',
+            text: 'Data admin ini akan dihapus permanen!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        });
     }
 </script>
 @endsection 
