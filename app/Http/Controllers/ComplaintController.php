@@ -28,5 +28,12 @@ public function destroy($id) {
     return redirect()->route('tabel_user')->with('success', 'Pengaduan berhasil dihapus!');
 }
 
+// Hapus complaint dari sisi admin (tanpa cek user_id)
+public function destroyAdmin($id)
+{
+    Complaint::findOrFail($id)->delete();
+    return redirect()->route('tabel_admin')->with('success', 'Pengaduan berhasil dihapus!');
+}
+
 
 }

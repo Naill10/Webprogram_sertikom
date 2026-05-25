@@ -142,6 +142,8 @@ Route::delete('/response/{id}', [ResponseController::class, 'destroy'])->name('r
 Route::get('/complaints/{id}', [ResponseController::class, 'show'])->name('complaint.show');
 Route::get('/respon', [ResponseController::class, 'respon'])->name('complaint.respon');
 
+//delete complaint(admin)
+Route::delete('/tabel_admin/{id}', [ComplaintController::class, 'destroyAdmin'])->name('tabel_admin.destroy');
 });
 
 require __DIR__.'/auth.php';

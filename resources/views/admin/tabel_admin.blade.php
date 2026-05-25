@@ -219,7 +219,15 @@
             <td class="px-5 py-4 sm:px-6">
                 <div class="flex items-center gap-2">
                     <a href="{{ route('complaint.show', $com->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded-md">Respon</a>
-                    <a href="" class="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1.5 rounded-md" onclick="return confirm('Are you sure you want to delete this complaint?')">Delete</a>
+                  <form id="delete-form-{{ $com->id }}" action="{{ route('tabel_admin.destroy', $com->id) }}" method="POST" style="display:inline">
+    @csrf
+    @method('DELETE')
+    <button type="button"
+        class="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1.5 rounded-md"
+        onclick="confirmDelete({{ $com->id }})">
+        Delete
+    </button>
+</form>
                 </div>
             </td>
 
@@ -262,4 +270,23 @@
         });
     </script>
 @endif
+
+<script>
+function confirmDelete(id) {
+    Swal.fire({
+        title: 'Yakin ingin menghapus?',
+        text: 'Data pengaduan ini akan dihapus permanen!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ef4444',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: 'Ya, Hapus!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('delete-form-' + id).submit();
+        }
+    });
+}
+</script>
 @endsection 
