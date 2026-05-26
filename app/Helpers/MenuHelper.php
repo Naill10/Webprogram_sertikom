@@ -12,7 +12,7 @@ class MenuHelper
                    [
                 'icon' => 'dashboard',
                 'name' => 'Dashboard',
-                'path' => '/',
+                'path' => '/dashboard-admin',
             ],
                
                 [

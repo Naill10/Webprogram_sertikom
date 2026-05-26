@@ -38,7 +38,7 @@
                     './images/user/user-25.jpg',
                     './images/user/user-26.jpg',
                 ],
-            },
+        }
             budget: '24.9K',
             status: 'Pending',
         },
@@ -183,7 +183,7 @@
    
             <td class="px-5 py-4 sm:px-6">
                 <p class="text-gray-700 font-bold text-theme-sm dark:text-white/90">{{ $com->title }}</p>
-                <p class="text-gray-500 text-theme-xs dark:text-gray-400">{{ Str::limit($com->description, 10) }}</p>
+                <p class="text-gray-500 text-theme-xs dark:text-gray-400">{{ Str::limit($com->description, 10)}}</p>
             </td>
 
 

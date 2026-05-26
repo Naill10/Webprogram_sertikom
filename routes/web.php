@@ -15,10 +15,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // dashboard pages
-
+    
 Route::get('/', function () {
     return view('pages.dashboard.ecommerce', ['title' => 'E-commerce Dashboard']);
 })->name('dashboard');
+
+Route::get('/dashboard-admin', function () {
+    return view('pages.dashboard.ecommerce-admin', ['title' => 'E-commerce Admin Dashboard']);
+})->name('ecommerce-admin');
 
 // calender pages
 Route::get('/calendar', function () {
