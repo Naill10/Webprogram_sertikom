@@ -37,13 +37,20 @@
      <div class="mb-4">
     <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Status</label>
     
+    @php
+        $statusClass = match($tabel_user->status) {
+            'pending'     => 'bg-yellow-100 text-yellow-700',
+            'in_progress' => 'bg-blue-100 text-blue-700',
+            'resolved'    => 'bg-green-100 text-green-700',
+            default       => 'bg-gray-100 text-gray-700',
+        };
+    @endphp
 
-    <select disabled
-        class="h-11 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white">
-        <option value="pending"     {{ $tabel_user->status === 'pending'     ? 'selected' : '' }}>Pending</option>
-        <option value="in_progress" {{ $tabel_user->status === 'in_progress' ? 'selected' : '' }}>In Progress</option>
-        <option value="resolved"    {{ $tabel_user->status === 'resolved'    ? 'selected' : '' }}>Resolved</option>
-    </select>
+    <div class="h-11 w-full rounded-lg border border-gray-300 px-4 py-2.5 dark:border-gray-700 dark:bg-gray-900 flex items-center">
+        <span class="rounded-full px-3 py-1 text-sm font-medium {{ $statusClass }}">
+            {{ ucfirst($tabel_user->status) }}
+        </span>
+    </div>
 
     {{-- Hidden input supaya nilai status tetap terkirim ke controller --}}
     <input type="hidden" name="status" value="{{ $tabel_user->status }}">
