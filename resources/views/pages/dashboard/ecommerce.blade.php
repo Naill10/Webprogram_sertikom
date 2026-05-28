@@ -4,23 +4,21 @@
   <div class="grid grid-cols-12 gap-4 md:gap-6">
 
     
+
+
+    <div class="col-span-12 ">
+      <x-ecommerce.statistics-chart :monthlyData="$monthlyData"/>
+    </div>
+
     <div class="col-span-12">
-      <x-ecommerce.ecommerce-metrics />
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        @foreach($recent as $com)
+            <x-ecommerce.customer-demographic :com="$com" />
+        @endforeach
     </div>
+</div>
 
 
-    <div class="col-span-12 xl:col-span-7">
-      <x-ecommerce.statistics-chart />
-    </div>
-
-    <div class="col-span-12 xl:col-span-5">
-      <x-ecommerce.customer-demographic />
-    </div>
-
-
-    <div class="col-span-12 xl:col-span-7">
-      <x-ecommerce.recent-orders />
-    </div>
 
   </div>
 @endsection

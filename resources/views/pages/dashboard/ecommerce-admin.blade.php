@@ -5,7 +5,12 @@
 
     
     <div class="col-span-12">
-      <x-ecommerce.ecommerce-metrics />
+     <x-ecommerce.ecommerce-metrics 
+    :total="$total" 
+    :pending="$pending" 
+    :inProgress="$inProgress" 
+    :resolved="$resolved" 
+/>
     </div>
 
 
@@ -13,8 +18,9 @@
 
 
 
-    <div class="col-span-12 xl:col-span-7">
-      <x-ecommerce.recent-orders />
+    <div class="col-span-12 ">
+     
+<x-ecommerce.recent-orders :recent="$recent" />
     </div>
 
   </div>

@@ -17,11 +17,30 @@ Route::middleware('auth')->group(function () {
 // dashboard pages
     
 Route::get('/', function () {
-    return view('pages.dashboard.ecommerce', ['title' => 'E-commerce Dashboard']);
+    $recent = \App\Models\Complaint::with('user')->latest()->take(8)->get();
+
+    $chartData = \App\Models\Complaint::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+        ->whereYear('created_at', date('Y'))
+        ->groupBy('month')
+        ->orderBy('month')
+        ->get()
+        ->keyBy('month');
+
+    $monthlyData = [];
+    for ($i = 1; $i <= 12; $i++) {
+        $monthlyData[] = $chartData->has($i) ? $chartData[$i]->total : 0;
+    }
+    return view('pages.dashboard.ecommerce', compact('recent','monthlyData'));
 })->name('dashboard');
 
 Route::get('/dashboard-admin', function () {
-    return view('pages.dashboard.ecommerce-admin', ['title' => 'E-commerce Admin Dashboard']);
+    $total      = \App\Models\Complaint::count();
+    $pending    = \App\Models\Complaint::where('status', 'pending')->count();
+    $inProgress = \App\Models\Complaint::where('status', 'in_progress')->count();
+    $resolved   = \App\Models\Complaint::where('status', 'resolved')->count();
+    $recent     = \App\Models\Complaint::with('user')->latest()->take(5)->get();
+
+    return view('pages.dashboard.ecommerce-admin', compact('total', 'pending', 'inProgress', 'resolved', 'recent'));
 })->name('ecommerce-admin');
 
 // calender pages

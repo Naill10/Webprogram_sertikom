@@ -1,73 +1,32 @@
-@props(['countries' => []])
-
-@php
-    $defaultCountries = [
-        [
-            'name' => 'USA',
-            'flag' => './images/country/country-01.svg',
-            'customers' => '2,379',
-            'percentage' => 79
-        ],
-        [
-            'name' => 'France',
-            'flag' => './images/country/country-02.svg',
-            'customers' => '589',
-            'percentage' => 23
-        ],
-    ];
-    
-    $countriesList = !empty($countries) ? $countries : $defaultCountries;
-@endphp
+@props(['com'])
 
 <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] sm:p-6">
-    <div class="flex justify-between">
+    <div class="flex items-center gap-3 mb-4">
+        @if($com->photo)
+            <img src="{{ asset('storage/' . $com->photo) }}" class="w-12 h-12 rounded-full object-cover flex-shrink-0">
+        @else
+            <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex-shrink-0"></div>
+        @endif
         <div>
-            <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
-                Customers Demographic
-            </h3>
-            <p class="mt-1 text-theme-sm text-gray-500 dark:text-gray-400">
-                Number of customer based on country
-            </p>
+            <h3 class="text-theme-sm font-semibold text-gray-800 dark:text-white/90">{{ $com->title }}</h3>
+            <p class="text-theme-xs text-gray-500 dark:text-gray-400">{{ $com->user->name ?? '-' }} • {{ $com->location }}</p>
         </div>
-
-         <!-- Dropdown Menu -->
-         <x-common.dropdown-menu />
-         <!-- End Dropdown Menu -->
     </div>
 
-    <div class="border-gary-200 my-6 overflow-hidden rounded-2xl border bg-gray-50 px-4 py-6 dark:border-gray-800 dark:bg-gray-900 sm:px-6">
-        <div id="mapOne" class="mapOne map-btn -mx-4 -my-6 h-[212px] w-[252px] 2xsm:w-[307px] xsm:w-[358px] sm:-mx-6 md:w-[668px] lg:w-[634px] xl:w-[393px] 2xl:w-[554px]"></div>
-    </div>
+    <p class="text-theme-xs text-gray-500 dark:text-gray-400 mb-4">{{ Str::limit($com->description, 80) }}</p>
 
-    <div class="space-y-5">
-        @foreach($countriesList as $country)
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-full max-w-8 items-center rounded-full">
-                        <img src="{{ $country['flag'] }}" alt="{{ strtolower($country['name']) }}" />
-                    </div>
-                    <div>
-                        <p class="text-theme-sm font-semibold text-gray-800 dark:text-white/90">
-                            {{ $country['name'] }}
-                        </p>
-                        <span class="block text-theme-xs text-gray-500 dark:text-gray-400">
-                            {{ $country['customers'] }} Customers
-                        </span>
-                    </div>
-                </div>
-
-                <div class="flex w-full max-w-[140px] items-center gap-3">
-                    <div class="relative block h-2 w-full max-w-[100px] rounded-sm bg-gray-200 dark:bg-gray-800">
-                        <div 
-                            class="absolute left-0 top-0 flex h-full items-center justify-center rounded-sm bg-brand-500 text-xs font-medium text-white"
-                            style="width: {{ $country['percentage'] }}%"
-                        ></div>
-                    </div>
-                    <p class="text-theme-sm font-medium text-gray-800 dark:text-white/90">
-                        {{ $country['percentage'] }}%
-                    </p>
-                </div>
-            </div>
-        @endforeach
+    <div class="flex items-center justify-between">
+        <span class="text-theme-xs text-gray-400">{{ $com->created_at->format('d M Y') }}</span>
+        @php
+            $statusClass = match($com->status) {
+                'pending'     => 'bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-orange-400',
+                'in_progress' => 'bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400',
+                'resolved'    => 'bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500',
+                default       => 'bg-gray-50 text-gray-600',
+            };
+        @endphp
+        <span class="rounded-full px-2 py-0.5 text-theme-xs font-medium {{ $statusClass }}">
+            {{ ucfirst($com->status) }}
+        </span>
     </div>
 </div>
