@@ -66,6 +66,7 @@
                 <option value="pending"     {{ $complaint->status === 'pending'     ? 'selected' : '' }}>Pending</option>
                 <option value="in_progress" {{ $complaint->status === 'in_progress' ? 'selected' : '' }}>In Progress</option>
                 <option value="resolved"    {{ $complaint->status === 'resolved'    ? 'selected' : '' }}>Resolved</option>
+                <option value="ditolak"    {{ $complaint->status === 'ditolak'    ? 'selected' : '' }}>ditolak</option>
             </select>
         </div>
             @error('response')
