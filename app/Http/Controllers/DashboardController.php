@@ -32,7 +32,7 @@ public function store(Request $request) {
         'description' => $request->description,
         'location'    => $request->location,
         'photo'       => $photoPath,
-        'status'      => 'pending',
+        'status'      => 'masuk',
     ]);
 
     return redirect()->route('tabel_user')->with('success', 'Pengaduan berhasil ditambahkan!');
@@ -59,7 +59,7 @@ public function update(Request $request, $id)
         'title'       => 'required|string|max:100',
         'description' => 'required|string|max:500',
         'location'    => 'required|string|max:100',
-        'status'      => 'required|in:pending,in_progress,resolved',
+        'status'      => 'required|in:masuk,dalam_proses,selesai,ditolak',
     ]) + ['photo' => $photoPath]);
 
     return redirect()->route('tabel_user')->with('success', 'Pengaduan berhasil diupdate!');

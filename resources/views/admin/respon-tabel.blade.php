@@ -27,6 +27,7 @@
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-400 uppercase">Respon</th>
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-400 uppercase">Admin</th>
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-400 uppercase">Waktu</th>
+                    <th class="px-5 py-3 text-left text-xs font-medium text-gray-400 uppercase">Status</th>
                     <th class="px-5 py-3 text-left text-xs font-medium text-gray-400 uppercase">Aksi</th>
                 </tr>
             </thead>
@@ -39,7 +40,7 @@
                     </td>
                     <td class="px-5 py-4 text-gray-600 dark:text-gray-400">
                         {{ $res->complaint->user->name ?? '-' }}
-                    </td>
+                    </td>   
                     <td class="px-5 py-4 text-gray-600 dark:text-gray-400 max-w-xs truncate">
                         {{ $res->response }}
                     </td>
@@ -49,6 +50,20 @@
                     <td class="px-5 py-4 text-gray-400 text-xs">
                         {{ $res->created_at->diffForHumans() }}
                     </td>
+                    <td class="px-5 py-4">
+    @php
+        $statusClass = match($res->complaint->status ?? 'masuk') {
+            'masuk'     => 'bg-yellow-50 text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-400',
+            'proses' => 'bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-400',
+            'selesai'    => 'bg-green-50 text-green-700 dark:bg-green-500/15 dark:text-green-500',
+            'ditolak'     => 'bg-red-50 text-red-700 dark:bg-red-500/15 dark:text-red-400',
+            default       => 'bg-gray-50 text-gray-700',
+        };
+    @endphp
+    <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-medium {{ $statusClass }}">
+        {{ ucfirst(str_replace('_', ' ', $res->complaint->status ?? '-')) }}
+    </span>
+</td>
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-2">
                             <a href="{{ route('complaint.show', $res->complaint_id) }}"

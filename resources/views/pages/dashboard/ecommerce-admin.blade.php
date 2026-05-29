@@ -7,9 +7,9 @@
     <div class="col-span-12">
      <x-ecommerce.ecommerce-metrics 
     :total="$total" 
-    :pending="$pending" 
-    :inProgress="$inProgress" 
-    :resolved="$resolved" 
+    :masuk="$masuk" 
+    :proses="$proses" 
+    :selesai="$selesai" 
 />
     </div>
 

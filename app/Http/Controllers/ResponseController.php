@@ -11,7 +11,7 @@ class ResponseController extends Controller
     {
         $request->validate([
             'response' => 'required|string|max:500',
-            'status'   => 'required|in:pending,in_progress,resolved,ditolak',
+            'status'   => 'required|in:masuk,dalam_proses,selesai,ditolak',
         ]);
 
         Response::create([

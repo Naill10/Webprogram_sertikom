@@ -35,12 +35,12 @@ Route::get('/', function () {
 
 Route::get('/dashboard-admin', function () {
     $total      = \App\Models\Complaint::count();
-    $pending    = \App\Models\Complaint::where('status', 'pending')->count();
-    $inProgress = \App\Models\Complaint::where('status', 'in_progress')->count();
-    $resolved   = \App\Models\Complaint::where('status', 'resolved')->count();
+    $masuk      = \App\Models\Complaint::where('status', 'masuk')->count();
+    $proses     = \App\Models\Complaint::where('status', 'proses')->count();
+    $selesai    = \App\Models\Complaint::where('status', 'selesai')->count();
     $recent     = \App\Models\Complaint::with('user')->latest()->take(5)->get();
 
-    return view('pages.dashboard.ecommerce-admin', compact('total', 'pending', 'inProgress', 'resolved', 'recent'));
+    return view('pages.dashboard.ecommerce-admin', compact('total', 'masuk', 'proses', 'selesai', 'recent'));
 })->name('ecommerce-admin');
 
 // calender pages

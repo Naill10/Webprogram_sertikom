@@ -49,9 +49,10 @@
                     <td class="py-3 whitespace-nowrap">
                         @php
                             $statusClass = match($com->status) {
-                                'pending'     => 'bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-orange-400',
-                                'in_progress' => 'bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400',
-                                'resolved'    => 'bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500',
+                                'masuk'     => 'bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-orange-400',
+                                'proses' => 'bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400',
+                                'selesai'    => 'bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500',
+                                'ditolak'    => 'bg-error-50 text-error-600 dark:bg-error-500/15 dark:text-error-500',
                                 default       => 'bg-gray-50 text-gray-600',
                             };
                         @endphp

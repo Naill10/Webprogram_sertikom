@@ -204,9 +204,9 @@
             <td class="px-5 py-4 sm:px-6">
                 @php
                     $statusClass = match($com->status) {
-                        'pending'   => 'bg-yellow-50 text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-400',
-                        'in_progress'  => 'bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-400',
-                        'resolved'   => 'bg-green-50 text-green-700 dark:bg-green-500/15 dark:text-green-500',
+                        'masuk'   => 'bg-yellow-50 text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-400',
+                        'proses'  => 'bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-400',
+                        'selesai'   => 'bg-green-50 text-green-700 dark:bg-green-500/15 dark:text-green-500',
                         'ditolak'   => 'bg-red-50 text-red-700 dark:bg-red-500/15 dark:text-red-500',
                     };
                 @endphp

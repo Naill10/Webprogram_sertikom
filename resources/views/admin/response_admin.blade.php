@@ -63,10 +63,10 @@
             <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Ubah Status</label>
             <select name="status"
                 class="h-11 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white">
-                <option value="pending"     {{ $complaint->status === 'pending'     ? 'selected' : '' }}>Pending</option>
-                <option value="in_progress" {{ $complaint->status === 'in_progress' ? 'selected' : '' }}>In Progress</option>
-                <option value="resolved"    {{ $complaint->status === 'resolved'    ? 'selected' : '' }}>Resolved</option>
-                <option value="ditolak"    {{ $complaint->status === 'ditolak'    ? 'selected' : '' }}>ditolak</option>
+                <option value="masuk"     {{ $complaint->status === 'masuk'     ? 'selected' : '' }}>Masuk</option>
+                <option value="dalam_proses" {{ $complaint->status === 'dalam_proses' ? 'selected' : '' }}>Dalam Proses</option>
+                <option value="selesai"    {{ $complaint->status === 'selesai'    ? 'selected' : '' }}>Selesai</option>
+                <option value="ditolak"    {{ $complaint->status === 'ditolak'    ? 'selected' : '' }}>Ditolak</option>
             </select>
         </div>
             @error('response')
