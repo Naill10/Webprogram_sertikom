@@ -39,9 +39,10 @@
     
     @php
         $statusClass = match($tabel_user->status) {
-            'pending'     => 'bg-yellow-100 text-yellow-700',
-            'in_progress' => 'bg-blue-100 text-blue-700',
-            'resolved'    => 'bg-green-100 text-green-700',
+            'masuk'     => 'bg-yellow-100 text-yellow-700',
+            'proses' => 'bg-blue-100 text-blue-700',
+            'selesai'    => 'bg-green-100 text-green-700',
+            'ditolak'   => 'bg-red-100 text-red-700',
             default       => 'bg-gray-100 text-gray-700',
         };
     @endphp

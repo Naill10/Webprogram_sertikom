@@ -17,7 +17,7 @@ Route::middleware('auth')->group(function () {
 // dashboard pages
     
 Route::get('/', function () {
-    $recent = \App\Models\Complaint::with('user')->latest()->take(8)->get();
+    $recent = \App\Models\Complaint::with('user')->latest()->take(6)->get();
 
     $chartData = \App\Models\Complaint::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
         ->whereYear('created_at', date('Y'))
