@@ -12,14 +12,8 @@
     :selesai="$selesai" 
 />
     </div>
-
-
-
-
-
-
     <div class="col-span-12 ">
-     
+      
 <x-ecommerce.recent-orders :recent="$recent" />
     </div>
 

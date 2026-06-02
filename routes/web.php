@@ -163,6 +163,7 @@ Route::put('/edit_admin/{id}', [AdminController::class, 'update'])->name('update
 Route::post('/complaints/{complaint_id}/response', [ResponseController::class, 'store'])->name('response.store');
 Route::delete('/response/{id}', [ResponseController::class, 'destroy'])->name('response.destroy');
 Route::get('/complaints/{id}', [ResponseController::class, 'show'])->name('complaint.show');
+Route::get('/complaint-detail/{id}', [DashboardController::class, 'detail'])->name('complaint.detail');
 Route::get('/respon', [ResponseController::class, 'respon'])->name('complaint.respon');
 
 //delete complaint(admin)

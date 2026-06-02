@@ -64,4 +64,9 @@ public function update(Request $request, $id)
 
     return redirect()->route('tabel_user')->with('success', 'Pengaduan berhasil diupdate!');
 }
+public function detail($id)
+{
+    $complaint = Complaint::with('user')->findOrFail($id);
+    return view('admin.detail-complaint', compact('complaint'));
+}
 }

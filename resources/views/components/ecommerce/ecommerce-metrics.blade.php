@@ -23,11 +23,11 @@
         </div>
         <div class="flex items-end justify-between mt-5">
             <div>
-                <span class="text-sm text-gray-500 dark:text-gray-400">Pending</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">Masuk</span>
                 <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ $masuk }}</h4>
             </div>
             <span class="flex items-center gap-1 rounded-full bg-yellow-50 py-0.5 pl-2 pr-2.5 text-sm font-medium text-yellow-600 dark:bg-yellow-500/15 dark:text-yellow-400">
-                Pending
+                Masuk
             </span>
         </div>
     </div>
@@ -40,7 +40,7 @@
         </div>
         <div class="flex items-end justify-between mt-5">
             <div>
-                <span class="text-sm text-gray-500 dark:text-gray-400">In Progress</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">Proses</span>
                 <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ $proses }}</h4>
             </div>
             <span class="flex items-center gap-1 rounded-full bg-blue-50 py-0.5 pl-2 pr-2.5 text-sm font-medium text-blue-600 dark:bg-blue-500/15 dark:text-blue-400">
@@ -58,7 +58,7 @@
         </div>
         <div class="flex items-end justify-between mt-5">
             <div>
-                <span class="text-sm text-gray-500 dark:text-gray-400">Resolved</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">Selesai</span>
                 <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ $selesai }}</h4>
             </div>
             <span class="flex items-center gap-1 rounded-full bg-green-50 py-0.5 pl-2 pr-2.5 text-sm font-medium text-green-600 dark:bg-green-500/15 dark:text-green-400">

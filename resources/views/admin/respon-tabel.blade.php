@@ -66,7 +66,7 @@
 </td>
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-2">
-                            <a href="{{ route('complaint.show', $res->complaint_id) }}"
+                            <a href="{{ route('complaint.detail', $res->complaint_id) }}"
                                 class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded-md">
                                 Detail
                             </a>

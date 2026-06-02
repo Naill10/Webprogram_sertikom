@@ -28,9 +28,10 @@
             <p class="text-xs font-medium text-gray-400 uppercase tracking-wide">Status</p>
             @php
                 $statusClass = match($complaint->status) {
-                    'pending'     => 'bg-yellow-50 text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-400',
-                    'in_progress' => 'bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-400',
-                    'resolved'    => 'bg-green-50 text-green-700 dark:bg-green-500/15 dark:text-green-500',
+                    'masuk'     => 'bg-yellow-50 text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-400',
+                    'proses' => 'bg-blue-50 text-blue-700 dark:bg-blue-500/15 dark:text-blue-400',
+                    'selesai'    => 'bg-green-50 text-green-700 dark:bg-green-500/15 dark:text-green-500',
+                    'ditolak'     => 'bg-red-50 text-red-700 dark:bg-red-500/15 dark:text-red-400',
                     default       => 'bg-gray-50 text-gray-700',
                 };
             @endphp
@@ -61,12 +62,16 @@
             @csrf
             <div class="mb-4">
             <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Ubah Status</label>
-            <select name="status"
-                class="h-11 w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white">
-                <option value="masuk"     {{ $complaint->status === 'masuk'     ? 'selected' : '' }}>Masuk</option>
-                <option value="dalam_proses" {{ $complaint->status === 'dalam_proses' ? 'selected' : '' }}>Dalam Proses</option>
-                <option value="selesai"    {{ $complaint->status === 'selesai'    ? 'selected' : '' }}>Selesai</option>
-                <option value="ditolak"    {{ $complaint->status === 'ditolak'    ? 'selected' : '' }}>Ditolak</option>
+           <select name="status"
+    class="h-11 w-full rounded-xl border border-gray-300 bg-white px-4
+           shadow-sm
+           focus:border-green-500
+           focus:ring-4 focus:ring-green-500/20
+           dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                <option value="masuk"   {{ $complaint->status === 'masuk'   ? 'selected' : '' }}>Masuk</option>
+                <option value="proses"  {{ $complaint->status === 'proses'  ? 'selected' : '' }}>Dalam Proses</option>
+                <option value="selesai" {{ $complaint->status === 'selesai' ? 'selected' : '' }}>Selesai</option>
+                <option value="ditolak" {{ $complaint->status === 'ditolak' ? 'selected' : '' }}>Ditolak</option>
             </select>
         </div>
             @error('response')
@@ -75,7 +80,7 @@
             <textarea name="response" rows="4" placeholder="Tulis respon untuk pengaduan ini..."
                 class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white">{{ old('response') }}</textarea>
             <button type="submit"
-                class="mt-3 inline-flex items-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700">
+                class="mt-3 inline-flex items-center rounded-lg bg-green-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-green-700">
                 Kirim Respon
             </button>
         </form>
@@ -88,7 +93,7 @@
         @forelse ($complaint->responses as $res)
             <div class="mb-4 rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800">
                 <div class="mb-1 flex items-center justify-between">
-                    <span class="text-xs font-medium text-blue-600 dark:text-blue-400">
+                    <span class="text-xs font-medium text-green-600 dark:text-blue-400">
                         {{ $res->admin->name ?? 'Admin' }}
                     </span>
                     <span class="text-xs text-gray-400">{{ $res->created_at->diffForHumans() }}</span>
